@@ -12,11 +12,7 @@
   <body>
     <h1>MYPICTURE</h1>
     <p>{{ message }}</p>
-    {% for picture in pictures %}
-    <p>
-      {{ picture.content }},
-      <a href="{% url 'pypicture:detail' picture.id %}">詳細</a>
-    </p>
-    {% endfor %}
+    <p>{{ picture.content }}</p>
+    <p><a href="{% url 'pypicture:index' %}">一覧</a></p>
   </body>
 </html>
