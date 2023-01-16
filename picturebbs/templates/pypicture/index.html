@@ -14,7 +14,7 @@
     <p>{{ message }}</p>
     {% for picture in pictures %}
     <p>
-      {{ picture.content }},
+      {{ picture.user_name }}, {{ picture.content }},
       <a href="{% url 'pypicture:detail' picture.id %}">詳細</a>
     </p>
     {% endfor %}
