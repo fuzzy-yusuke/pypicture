@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Picture BBS</title>
-    <style>
-      body {
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>MYPICTURE</h1>
-    <p>{{ message }}</p>
-    {% for picture in pictures %}
-    <p>
-      {{ picture.user_name }}, {{ picture.content }},
-      <a href="{% url 'pypicture:detail' picture.id %}">詳細</a>
-    </p>
-    {% endfor %}
-  </body>
-</html>
+{% extends "./base.html" %} {% block content %}
+<h1>MYPICTURE</h1>
+<p>{{ message }}</p>
+
+<table class="table table-striped table-hover">
+  {% for picture in pictures %}
+  <tr>
+    <td>{{ picture.user_name }}</td>
+    <td>{{ picture.content }}</td>
+    <td>
+      <a
+        href="{% url "pypicture:detail" picture.id %}"
+        class="btn btn-outline-primary"
+        >詳細</a
+      >
+      <a
+        href="{% url "pypicture:delete" picture.id %}"
+        class="btn btn-outline-secondary"
+        >削除</a
+      >
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<div>
+  <a href='{% url "pypicture:create" %}' class="btn btn-outline-primary"
+    >新規</a
+  >
+</div>
+{% endblock %}
