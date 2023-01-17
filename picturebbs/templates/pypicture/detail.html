@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Picture BBS</title>
-    <style>
-      body {
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>MYPICTURE</h1>
-    <p>{{ message }}</p>
-    <p>{{ picture.user_name }}</p>
-    <p>{{ picture.content }}</p>
-    <p><a href="{% url 'pypicture:index' %}">一覧</a></p>
-  </body>
-</html>
+{% extends "./base.html" %} {% block content %}
+<h1>MYPICTURE</h1>
+<p>{{ message }}</p>
+<p>{{ picture.user_name }}</p>
+<p>{{ picture.content }}</p>
+<p><a href="{% url "pypicture:index" %}" class="btn btn-outline-primary">一覧</a></p>
+{% endblock %}
