@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Pictures
 from .forms import SearchForm
+from .forms import PictureForm
 
 def index(request):
     searchForm = SearchForm(request.GET)
@@ -27,18 +28,23 @@ def detail(request, id):
     return render(request, 'pypicture/detail.html', context)
 
 def new(request):
-    return HttpResponse('this is new.')
+    pictureForm = PictureForm()
+    context = {
+        'message': 'New MyPicture',
+        'pictureForm': pictureForm,
+    }
+    return render(request, 'pypicture/new.html', context)
 
 def create(request):
-    picture = Pictures(content='Hello MYPICTURE', user_name='test')
-    picture.save()
-
-    pictures = Pictures.objects.all()
+    if request.method == 'POST':
+        pictureForm = PictureForm(request.POST)
+        if pictureForm.is_valid():
+            picture = pictureForm.save()
     context = {
-        'message': 'Create Content',
-        'pictures': pictures,
+        'message': 'Upload Picture' + str(picture.id),
+        'picture': picture,
     }
-    return render(request, 'pypicture/index.html', context)
+    return render(request, 'pypicture/detail.html', context)
 
 def edit(request, id):
     return HttpResponse('this is edit' + str(id))
