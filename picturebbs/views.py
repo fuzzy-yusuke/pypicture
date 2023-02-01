@@ -47,10 +47,27 @@ def create(request):
     return render(request, 'pypicture/detail.html', context)
 
 def edit(request, id):
-    return HttpResponse('this is edit' + str(id))
+    picture = get_object_or_404(Pictures, pk=id)
+    pictureForm = PictureForm(instance=picture)
+
+    context = {
+        'message': '投稿を編集する',
+        'picture': picture,
+        'pictureForm': pictureForm,
+    }
+    return render(request, 'pypicture/edit.html', context)
 
 def update(request, id):
-    return HttpResponse('this is update' + str(id))
+    if request.method == 'POST':
+        picture = get_object_or_404(Pictures, pk=id)
+        pictureForm = PictureForm(request.POST, instance=picture)
+        if pictureForm.is_valid():
+            pictureForm.save()
+    context = {
+        'message': str(id) + 'を更新しました',
+        'picture': picture,
+    }
+    return render(request, 'pypicture/detail.html', context)
 
 def delete(request, id):
     picture = get_object_or_404(Pictures, pk=id)
