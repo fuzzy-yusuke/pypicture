@@ -1,6 +1,6 @@
 {% extends './base.html' %} {% load django_bootstrap5 %} {% block content %}
 <h1>{{ message }}</h1>
-<form action="{% url "pypicture:create" %}" method="post" class="form">
+<form action="{% url "pypicture:create" %}" method="post" class="form" enctype="multipart/form-data">
   {% csrf_token %} {% bootstrap_form pictureForm layout='horizontal'%}
   <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">作成する</button>
   <a href='{% url "pypicture:index" %}' class="btn btn-outline-secondary"

@@ -3,6 +3,7 @@
 <p>{{ message }}</p>
 <p>{{ picture.user_name }}</p>
 <p>{{ picture.content }}</p>
+<p><img src="/media/{{picture.image}}" alt=""></p>
 <div>
 <a href="{% url "pypicture:index" %}" class="btn btn-outline-primary">一覧</a>
 <a href="{% url "pypicture:edit" picture.id %}" class="btn btn-outline-secondary">編集</a>

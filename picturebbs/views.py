@@ -37,7 +37,7 @@ def new(request):
 
 def create(request):
     if request.method == 'POST':
-        pictureForm = PictureForm(request.POST)
+        pictureForm = PictureForm(request.POST, request.FILES)
         if pictureForm.is_valid():
             picture = pictureForm.save()
     context = {

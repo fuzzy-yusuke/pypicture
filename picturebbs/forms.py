@@ -7,4 +7,4 @@ class SearchForm(forms.Form):
 class PictureForm(forms.ModelForm):
     class Meta:
         model = Pictures
-        fields = ('content', 'user_name')
+        fields = ('content', 'user_name', 'image')
